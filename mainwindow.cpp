@@ -41,3 +41,8 @@ void MainWindow::on_actionSave_triggered()
 {
   saveFile();
 }
+
+void MainWindow::on_actionNew_File_triggered()
+{
+    ui->textEdit->clear();
+}
