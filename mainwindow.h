@@ -20,6 +20,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void saveFileAs();
     void saveFile();
     void openFile();
     
@@ -30,8 +31,13 @@ private slots:
 
     void on_actionNew_File_triggered();
 
+    void on_actionCopy_triggered();
+
+    void on_actionSave_As_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QString filePath;
 };
 
 #endif // MAINWINDOW_H
