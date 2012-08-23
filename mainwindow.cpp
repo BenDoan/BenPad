@@ -64,12 +64,24 @@ void MainWindow::on_actionNew_File_triggered()
     filePath = "";
 }
 
-void MainWindow::on_actionCopy_triggered()
-{
-    std::cout << "hello";
-}
-
 void MainWindow::on_actionSave_As_triggered()
 {
     saveFileAs();
 }
+
+void MainWindow::on_actionCopy_triggered()
+{
+    std::cerr << "copy\n";
+}
+
+void MainWindow::on_actionPaste_triggered()
+{
+    std::cerr << "paste\n";
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    std::cerr << "about\n";
+}
+
+

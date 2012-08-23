@@ -35,6 +35,10 @@ private slots:
 
     void on_actionSave_As_triggered();
 
+    void on_actionPaste_triggered();
+
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString filePath;
