@@ -34,6 +34,11 @@ public:
     QAction *actionSettings;
     QAction *actionAbout;
     QAction *actionSave_As;
+    QAction *actionSelect_All;
+    QAction *actionUndo;
+    QAction *actionRedo;
+    QAction *actionDelete;
+    QAction *actionCut;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTextEdit *textEdit;
@@ -64,6 +69,16 @@ public:
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         actionSave_As = new QAction(MainWindow);
         actionSave_As->setObjectName(QString::fromUtf8("actionSave_As"));
+        actionSelect_All = new QAction(MainWindow);
+        actionSelect_All->setObjectName(QString::fromUtf8("actionSelect_All"));
+        actionUndo = new QAction(MainWindow);
+        actionUndo->setObjectName(QString::fromUtf8("actionUndo"));
+        actionRedo = new QAction(MainWindow);
+        actionRedo->setObjectName(QString::fromUtf8("actionRedo"));
+        actionDelete = new QAction(MainWindow);
+        actionDelete->setObjectName(QString::fromUtf8("actionDelete"));
+        actionCut = new QAction(MainWindow);
+        actionCut->setObjectName(QString::fromUtf8("actionCut"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
@@ -107,8 +122,15 @@ public:
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionSave);
         menuFile->addAction(actionSave_As);
+        menuEdit->addAction(actionUndo);
+        menuEdit->addAction(actionRedo);
+        menuEdit->addSeparator();
         menuEdit->addAction(actionCopy);
+        menuEdit->addAction(actionCut);
         menuEdit->addAction(actionPaste);
+        menuEdit->addAction(actionDelete);
+        menuEdit->addSeparator();
+        menuEdit->addAction(actionSelect_All);
         menuOptions->addAction(actionSettings);
         menuHelp->addAction(actionAbout);
 
@@ -128,6 +150,11 @@ public:
         actionSettings->setText(QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
         actionAbout->setText(QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
         actionSave_As->setText(QApplication::translate("MainWindow", "Save As", 0, QApplication::UnicodeUTF8));
+        actionSelect_All->setText(QApplication::translate("MainWindow", "Select All", 0, QApplication::UnicodeUTF8));
+        actionUndo->setText(QApplication::translate("MainWindow", "Undo", 0, QApplication::UnicodeUTF8));
+        actionRedo->setText(QApplication::translate("MainWindow", "Redo", 0, QApplication::UnicodeUTF8));
+        actionDelete->setText(QApplication::translate("MainWindow", "Delete", 0, QApplication::UnicodeUTF8));
+        actionCut->setText(QApplication::translate("MainWindow", "Cut", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0, QApplication::UnicodeUTF8));
         menuOptions->setTitle(QApplication::translate("MainWindow", "Options", 0, QApplication::UnicodeUTF8));

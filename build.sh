@@ -2,11 +2,11 @@ qmake-qt4 -r BenPad.pro
 make
 ./BenPad &
 pid=$!
-echo "Launching application"
+echo "build: Launching application"
 for i in {15..0}
 do
     sleep 1
-    echo "Killing application in $i seconds"
+    echo "build: Killing application in $i seconds"
 
 done
 

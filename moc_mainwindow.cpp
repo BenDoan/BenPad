@@ -22,7 +22,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,6 +37,11 @@ static const uint qt_meta_data_MainWindow[] = {
      120,   11,   11,   11, 0x08,
      149,   11,   11,   11, 0x08,
      176,   11,   11,   11, 0x08,
+     203,   11,   11,   11, 0x08,
+     235,   11,   11,   11, 0x08,
+     261,   11,   11,   11, 0x08,
+     287,   11,   11,   11, 0x08,
+     315,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -49,6 +54,11 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_actionSave_As_triggered()\0"
     "on_actionPaste_triggered()\0"
     "on_actionAbout_triggered()\0"
+    "on_actionSelect_All_triggered()\0"
+    "on_actionUndo_triggered()\0"
+    "on_actionRedo_triggered()\0"
+    "on_actionDelete_triggered()\0"
+    "on_actionCut_triggered()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -64,6 +74,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_actionSave_As_triggered(); break;
         case 5: _t->on_actionPaste_triggered(); break;
         case 6: _t->on_actionAbout_triggered(); break;
+        case 7: _t->on_actionSelect_All_triggered(); break;
+        case 8: _t->on_actionUndo_triggered(); break;
+        case 9: _t->on_actionRedo_triggered(); break;
+        case 10: _t->on_actionDelete_triggered(); break;
+        case 11: _t->on_actionCut_triggered(); break;
         default: ;
         }
     }
@@ -102,9 +117,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 12;
     }
     return _id;
 }
