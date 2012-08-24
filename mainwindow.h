@@ -49,6 +49,8 @@ private slots:
 
     void on_actionCut_triggered();
 
+    void on_actionQuit_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString filePath;

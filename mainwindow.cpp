@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->textEdit->setAcceptRichText(FALSE);
 }
 
 MainWindow::~MainWindow()
@@ -84,8 +85,6 @@ void MainWindow::on_actionAbout_triggered()
     std::cerr << "about\n";
 }
 
-
-
 void MainWindow::on_actionSelect_All_triggered()
 {
    ui->textEdit->selectAll();
@@ -103,10 +102,15 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::on_actionDelete_triggered()
 {
-
+   ui->textEdit->textCursor().removeSelectedText();
 }
 
 void MainWindow::on_actionCut_triggered()
 {
    ui->textEdit->cut();
+}
+
+void MainWindow::on_actionQuit_triggered()
+{
+   qApp->exit();
 }
