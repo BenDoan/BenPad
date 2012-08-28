@@ -1,12 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+    MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->textEdit->setAcceptRichText(FALSE);
+    MainWindow::setWindowTitle("Untitled - BenPad");
 }
 
 MainWindow::~MainWindow()
@@ -22,6 +23,7 @@ void MainWindow::saveFileAs()
     {
         file.write(ui->textEdit->toPlainText().toUtf8());
     }
+    MainWindow::setWindowTitle(filePath.toUtf8() + " - BenPad");
 }
 
 void MainWindow::saveFile()
@@ -37,9 +39,8 @@ void MainWindow::openFile()
 {
     filePath = QFileDialog::getOpenFileName(this);
     QFile file(filePath);
-    //if (file.open(QIODevice::ReadOnly|QIODevice::Text)) return;
     file.open(QIODevice::ReadOnly|QIODevice::Text);
-    ui->textEdit->setPlainText(QString::fromUtf8(file.readAll()));
+    MainWindow::setWindowTitle(filePath.toUtf8() + " - BenPad");
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -63,6 +64,7 @@ void MainWindow::on_actionNew_File_triggered()
 {
     ui->textEdit->clear();
     filePath = "";
+    MainWindow::setWindowTitle("Untitled - BenPad");
 }
 
 void MainWindow::on_actionSave_As_triggered()
