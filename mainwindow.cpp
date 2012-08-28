@@ -9,7 +9,6 @@
     ui->textEdit->setAcceptRichText(FALSE);
     MainWindow::setWindowTitle("Untitled - BenPad");
     MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
-    std::cerr << QApplication::applicationDirPath().toStdString() << "/icon.png";
 }
 
 MainWindow::~MainWindow()
