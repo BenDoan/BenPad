@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QFile>
 #include <QFileDialog>
+#include <QIcon>
 #include <QIODevice>
 
 #include <QMainWindow>
