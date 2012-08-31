@@ -22,7 +22,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -43,6 +43,9 @@ static const uint qt_meta_data_MainWindow[] = {
      287,   11,   11,   11, 0x08,
      315,   11,   11,   11, 0x08,
      340,   11,   11,   11, 0x08,
+     366,   11,   11,   11, 0x08,
+     395,   11,   11,   11, 0x08,
+     412,   11,  408,   11, 0x08,
 
        0        // eod
 };
@@ -61,6 +64,8 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_actionDelete_triggered()\0"
     "on_actionCut_triggered()\0"
     "on_actionQuit_triggered()\0"
+    "on_actionNew_Tab_triggered()\0makeNewTab()\0"
+    "int\0currentTab()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -82,10 +87,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 10: _t->on_actionDelete_triggered(); break;
         case 11: _t->on_actionCut_triggered(); break;
         case 12: _t->on_actionQuit_triggered(); break;
+        case 13: _t->on_actionNew_Tab_triggered(); break;
+        case 14: _t->makeNewTab(); break;
+        case 15: { int _r = _t->currentTab();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData MainWindow::staticMetaObjectExtraData = {
@@ -120,9 +128,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 16;
     }
     return _id;
 }

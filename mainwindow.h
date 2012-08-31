@@ -7,8 +7,12 @@
 #include <QFileDialog>
 #include <QIcon>
 #include <QIODevice>
+#include <QToolButton>
+#include <vector>
 
 #include <QMainWindow>
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -21,9 +25,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void saveFileAs();
-    void saveFile();
-    void openFile();
 
 private slots:
     void on_actionOpen_triggered();
@@ -52,10 +53,24 @@ private slots:
 
     void on_actionQuit_triggered();
 
+    void on_actionNew_Tab_triggered();
+
+    void makeNewTab();
+
+    int currentTab();
+
 private:
+    void saveFileAs();
+    void saveFile();
+    void openFile();
     Ui::MainWindow *ui;
-    QString filePath;
     QString fileName;
+
+    struct Tab {
+        int number;
+        QString path;
+    };
+    vector<Tab> tabs;
 };
 
 #endif // MAINWINDOW_H

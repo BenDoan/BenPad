@@ -42,6 +42,7 @@ public:
     QAction *actionDelete;
     QAction *actionCut;
     QAction *actionQuit;
+    QAction *actionNew_Tab;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTabWidget *tabWidget;
@@ -49,6 +50,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QTextEdit *textEdit;
     QWidget *tab_4;
+    QTextEdit *textEdit_2;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -87,6 +89,8 @@ public:
         actionCut->setObjectName(QString::fromUtf8("actionCut"));
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
+        actionNew_Tab = new QAction(MainWindow);
+        actionNew_Tab->setObjectName(QString::fromUtf8("actionNew_Tab"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
@@ -116,6 +120,10 @@ public:
         tabWidget->addTab(tab_3, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
+        tab_4->setEnabled(false);
+        textEdit_2 = new QTextEdit(tab_4);
+        textEdit_2->setObjectName(QString::fromUtf8("textEdit_2"));
+        textEdit_2->setGeometry(QRect(0, 0, 601, 281));
         tabWidget->addTab(tab_4, QString());
 
         gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
@@ -136,6 +144,7 @@ public:
         menuBar->addAction(menuEdit->menuAction());
         menuBar->addAction(menuHelp->menuAction());
         menuFile->addAction(actionNew_File);
+        menuFile->addAction(actionNew_Tab);
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionSave);
         menuFile->addAction(actionSave_As);
@@ -153,7 +162,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -176,6 +185,7 @@ public:
         actionDelete->setText(QApplication::translate("MainWindow", "Delete", 0, QApplication::UnicodeUTF8));
         actionCut->setText(QApplication::translate("MainWindow", "Cut", 0, QApplication::UnicodeUTF8));
         actionQuit->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
+        actionNew_Tab->setText(QApplication::translate("MainWindow", "New Tab", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Tab 1", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Tab 2", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));

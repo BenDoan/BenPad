@@ -39,7 +39,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -58,9 +58,22 @@
        </layout>
       </widget>
       <widget class="QWidget" name="tab_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
+       <widget class="QTextEdit" name="textEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>601</width>
+          <height>281</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -80,6 +93,7 @@
      <string>File</string>
     </property>
     <addaction name="actionNew_File"/>
+    <addaction name="actionNew_Tab"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
@@ -177,6 +191,11 @@
   <action name="actionQuit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionNew_Tab">
+   <property name="text">
+    <string>New Tab</string>
    </property>
   </action>
  </widget>
