@@ -9,6 +9,9 @@
 #include <QIODevice>
 #include <QToolButton>
 #include <vector>
+#include <QTextStream>
+#include <QRegExp>
+#include <QTextEdit>
 
 #include <QMainWindow>
 
@@ -69,6 +72,7 @@ private:
     struct Tab {
         int number;
         QString path;
+        QTextEdit *textEdit;
     };
     vector<Tab> tabs;
 };

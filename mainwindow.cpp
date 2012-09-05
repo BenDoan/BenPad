@@ -6,19 +6,6 @@
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->textEdit->setAcceptRichText(FALSE);
-    QToolButton *newTabButton = new QToolButton(this);
-    ui->tabWidget->setCornerWidget(newTabButton);
-    newTabButton->setAutoRaise(true);
-    newTabButton->setText("+");
-    QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(makeNewTab()));
-    MainWindow::setWindowTitle("Untitled - BenPad");
-    MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
-
-    Tab tab;
-    tab.number = 0;
-    tab.path = "";
-    tabs.push_back(tab);
 }
 
 MainWindow::~MainWindow()
@@ -28,6 +15,31 @@ MainWindow::~MainWindow()
 
 int MainWindow::currentTab(){
     return ui->tabWidget->currentIndex();
+}
+
+void MainWindow::setUpEditor()
+{
+    ui->textEdit->setAcceptRichText(FALSE);
+    MainWindow::setWindowTitle("Untitled - BenPad");
+    MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
+    ui->tabWidget->removeTab(1);
+
+    addNewTabButton();
+
+    Tab tab;
+    tab.number = 0;
+    tab.path = "";
+    tab.textEdit = ui->textEdit;
+    tabs.push_back(tab);
+}
+
+void addNewTabButton()
+{
+    QToolButton *newTabButton = new QToolButton(this);
+    ui->tabWidget->setCornerWidget(newTabButton);
+    newTabButton->setAutoRaise(true);
+    newTabButton->setText("+");
+    QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(makeNewTab()));
 }
 
 void MainWindow::saveFileAs()
@@ -52,17 +64,21 @@ void MainWindow::saveFile()
 void MainWindow::openFile()
 {
     QFile file(tabs[currentTab()].path = QFileDialog::getOpenFileName(this));
-    file.open(QIODevice::ReadOnly|QIODevice::Text);
+    if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) cerr << "File open error";
+    QByteArray byteArray = file.readAll();
+    cerr << byteArray.data();
+    tabs[currentTab()].textEdit->setPlainText(byteArray.data());
     MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
 }
 
 void MainWindow::makeNewTab()
 {
-   ui->tabWidget->addTab(new QTextEdit, "new tab");
-   Tab tab;
-   tab.number = tabs[0].number + 1;
-   tab.path = "";
-   tabs.push_back(tab);
+    Tab tab;
+    tab.textEdit = new QTextEdit;
+    ui->tabWidget->addTab(tab.textEdit, "Untitled");
+    tab.number = tabs[tabs.size() - 1].number + 1;
+    tab.path = "";
+    tabs.push_back(tab);
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -105,7 +121,11 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    cerr << "about\n";
+    cerr << "All Tabs:\n";
+    for (unsigned int i=0;i < tabs.size();i++)
+    {
+      cerr << tabs[i].number << "\n";
+    }
 }
 
 void MainWindow::on_actionSelect_All_triggered()
