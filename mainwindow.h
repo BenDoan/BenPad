@@ -13,6 +13,7 @@
 #include <QRegExp>
 #include <QTextEdit>
 #include <string>
+#include <QMessageBox>
 
 #include <QMainWindow>
 

@@ -8,7 +8,7 @@
     ui->setupUi(this);
     setUpEditor();
 
-    //add new tab button
+    //adds new tab button
     QToolButton *newTabButton = new QToolButton(this);
     ui->tabWidget->setCornerWidget(newTabButton);
     newTabButton->setAutoRaise(true);
@@ -41,8 +41,8 @@ void MainWindow::setUpEditor()
     ui->textEdit->setAcceptRichText(FALSE);
     MainWindow::setWindowTitle("Untitled - BenPad");
     MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
-    ui->tabWidget->removeTab(1);
-
+    ui->tabWidget->removeTab(1); // removes the redunant second tab
+    ui->tabWidget->setTabText(0, "Untitled");
 
     Tab tab;
     tab.number = 0;
@@ -140,11 +140,7 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    cerr << "All Tabs:\n";
-    for (unsigned int i=0;i < tabs.size();i++)
-    {
-      cerr << tabs[i].number << "\n";
-    }
+    QMessageBox::about(this, "About - BenPad", "BenPad pre-alpha\n");
 }
 
 void MainWindow::on_actionSelect_All_triggered()
