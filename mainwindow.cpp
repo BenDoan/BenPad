@@ -130,12 +130,12 @@ void MainWindow::on_actionSave_As_triggered()
 
 void MainWindow::on_actionCopy_triggered()
 {
-    ui->textEdit->copy();
+   tabs[currentTab()].textEdit->copy();
 }
 
 void MainWindow::on_actionPaste_triggered()
 {
-    ui->textEdit->paste();
+   tabs[currentTab()].textEdit->paste();
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -149,27 +149,27 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionSelect_All_triggered()
 {
-   ui->textEdit->selectAll();
+   tabs[currentTab()].textEdit->selectAll();
 }
 
 void MainWindow::on_actionUndo_triggered()
 {
-   ui->textEdit->undo();
+   tabs[currentTab()].textEdit->undo();
 }
 
 void MainWindow::on_actionRedo_triggered()
 {
-   ui->textEdit->redo();
+   tabs[currentTab()].textEdit->redo();
 }
 
 void MainWindow::on_actionDelete_triggered()
 {
-   ui->textEdit->textCursor().removeSelectedText();
+   tabs[currentTab()].textEdit->textCursor().removeSelectedText();
 }
 
 void MainWindow::on_actionCut_triggered()
 {
-   ui->textEdit->cut();
+   tabs[currentTab()].textEdit->cut();
 }
 
 void MainWindow::on_actionQuit_triggered()
