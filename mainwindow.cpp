@@ -6,6 +6,14 @@
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setUpEditor();
+
+    //add new tab button
+    QToolButton *newTabButton = new QToolButton(this);
+    ui->tabWidget->setCornerWidget(newTabButton);
+    newTabButton->setAutoRaise(true);
+    newTabButton->setText("+");
+    QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(makeNewTab()));
 }
 
 MainWindow::~MainWindow()
@@ -13,8 +21,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-int MainWindow::currentTab(){
+int MainWindow::currentTab()
+{
     return ui->tabWidget->currentIndex();
+}
+
+QString MainWindow::extractFilename(QString path)
+{
+    string stdPath = path.toStdString();
+    #ifdef WIN32
+        return QString::fromStdString(stdPath.substr(stdPath.find_last_of('\\') + 1));
+    #else
+        return QString::fromStdString(stdPath.substr(stdPath.find_last_of('/') + 1));
+    #endif
 }
 
 void MainWindow::setUpEditor()
@@ -24,22 +43,17 @@ void MainWindow::setUpEditor()
     MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
     ui->tabWidget->removeTab(1);
 
-    addNewTabButton();
 
     Tab tab;
     tab.number = 0;
     tab.path = "";
+    tab.filename = "";
     tab.textEdit = ui->textEdit;
     tabs.push_back(tab);
 }
 
-void addNewTabButton()
-{
-    QToolButton *newTabButton = new QToolButton(this);
-    ui->tabWidget->setCornerWidget(newTabButton);
-    newTabButton->setAutoRaise(true);
-    newTabButton->setText("+");
-    QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(makeNewTab()));
+void MainWindow::setTabName(unsigned int index, QString text){
+    ui->tabWidget->setTabText(index, text);
 }
 
 void MainWindow::saveFileAs()
@@ -50,6 +64,8 @@ void MainWindow::saveFileAs()
         file.write(ui->textEdit->toPlainText().toUtf8());
     }
     MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
+    tabs[currentTab()].filename = extractFilename(tabs[currentTab()].path);
+    setTabName(currentTab(), tabs[currentTab()].filename);
 }
 
 void MainWindow::saveFile()
@@ -66,9 +82,11 @@ void MainWindow::openFile()
     QFile file(tabs[currentTab()].path = QFileDialog::getOpenFileName(this));
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) cerr << "File open error";
     QByteArray byteArray = file.readAll();
-    cerr << byteArray.data();
     tabs[currentTab()].textEdit->setPlainText(byteArray.data());
+
     MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
+    tabs[currentTab()].filename = extractFilename(tabs[currentTab()].path);
+    setTabName(currentTab(), tabs[currentTab()].filename);
 }
 
 void MainWindow::makeNewTab()
@@ -78,6 +96,7 @@ void MainWindow::makeNewTab()
     ui->tabWidget->addTab(tab.textEdit, "Untitled");
     tab.number = tabs[tabs.size() - 1].number + 1;
     tab.path = "";
+    tab.filename = "";
     tabs.push_back(tab);
 }
 

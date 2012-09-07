@@ -12,6 +12,7 @@
 #include <QTextStream>
 #include <QRegExp>
 #include <QTextEdit>
+#include <string>
 
 #include <QMainWindow>
 
@@ -66,12 +67,15 @@ private:
     void saveFileAs();
     void saveFile();
     void openFile();
+    void setUpEditor();
+    void setTabName(unsigned int index, QString text);
+    QString extractFilename(QString path);
     Ui::MainWindow *ui;
-    QString fileName;
 
     struct Tab {
         int number;
         QString path;
+        QString filename;
         QTextEdit *textEdit;
     };
     vector<Tab> tabs;
