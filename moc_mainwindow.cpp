@@ -31,41 +31,41 @@ static const uint qt_meta_data_MainWindow[] = {
 
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x08,
-      38,   11,   11,   11, 0x08,
-      64,   11,   11,   11, 0x08,
-      94,   11,   11,   11, 0x08,
-     120,   11,   11,   11, 0x08,
-     149,   11,   11,   11, 0x08,
+      25,   11,   11,   11, 0x08,
+      40,   11,   11,   11, 0x08,
+      67,   11,   11,   11, 0x08,
+      93,   11,   11,   11, 0x08,
+     118,   11,   11,   11, 0x08,
+     146,   11,   11,   11, 0x08,
      176,   11,   11,   11, 0x08,
-     203,   11,   11,   11, 0x08,
-     235,   11,   11,   11, 0x08,
-     261,   11,   11,   11, 0x08,
-     287,   11,   11,   11, 0x08,
-     315,   11,   11,   11, 0x08,
-     340,   11,   11,   11, 0x08,
-     366,   11,   11,   11, 0x08,
-     395,   11,   11,   11, 0x08,
-     412,   11,  408,   11, 0x08,
+     205,   11,   11,   11, 0x08,
+     231,   11,   11,   11, 0x08,
+     258,   11,   11,   11, 0x08,
+     284,   11,   11,   11, 0x08,
+     310,   11,   11,   11, 0x08,
+     339,   11,   11,   11, 0x08,
+     365,   11,   11,   11, 0x08,
+     397,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0on_actionOpen_triggered()\0"
-    "on_actionSave_triggered()\0"
-    "on_actionNew_File_triggered()\0"
-    "on_actionCopy_triggered()\0"
-    "on_actionSave_As_triggered()\0"
-    "on_actionPaste_triggered()\0"
+    "MainWindow\0\0makeNewTab()\0deleteTab(int)\0"
     "on_actionAbout_triggered()\0"
+    "on_actionCopy_triggered()\0"
+    "on_actionCut_triggered()\0"
+    "on_actionDelete_triggered()\0"
+    "on_actionNew_File_triggered()\0"
+    "on_actionNew_Tab_triggered()\0"
+    "on_actionOpen_triggered()\0"
+    "on_actionPaste_triggered()\0"
+    "on_actionQuit_triggered()\0"
+    "on_actionRedo_triggered()\0"
+    "on_actionSave_As_triggered()\0"
+    "on_actionSave_triggered()\0"
     "on_actionSelect_All_triggered()\0"
     "on_actionUndo_triggered()\0"
-    "on_actionRedo_triggered()\0"
-    "on_actionDelete_triggered()\0"
-    "on_actionCut_triggered()\0"
-    "on_actionQuit_triggered()\0"
-    "on_actionNew_Tab_triggered()\0makeNewTab()\0"
-    "int\0currentTab()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -74,23 +74,22 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_ASSERT(staticMetaObject.cast(_o));
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->on_actionOpen_triggered(); break;
-        case 1: _t->on_actionSave_triggered(); break;
-        case 2: _t->on_actionNew_File_triggered(); break;
+        case 0: _t->makeNewTab(); break;
+        case 1: _t->deleteTab((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->on_actionAbout_triggered(); break;
         case 3: _t->on_actionCopy_triggered(); break;
-        case 4: _t->on_actionSave_As_triggered(); break;
-        case 5: _t->on_actionPaste_triggered(); break;
-        case 6: _t->on_actionAbout_triggered(); break;
-        case 7: _t->on_actionSelect_All_triggered(); break;
-        case 8: _t->on_actionUndo_triggered(); break;
-        case 9: _t->on_actionRedo_triggered(); break;
-        case 10: _t->on_actionDelete_triggered(); break;
-        case 11: _t->on_actionCut_triggered(); break;
-        case 12: _t->on_actionQuit_triggered(); break;
-        case 13: _t->on_actionNew_Tab_triggered(); break;
-        case 14: _t->makeNewTab(); break;
-        case 15: { int _r = _t->currentTab();
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 4: _t->on_actionCut_triggered(); break;
+        case 5: _t->on_actionDelete_triggered(); break;
+        case 6: _t->on_actionNew_File_triggered(); break;
+        case 7: _t->on_actionNew_Tab_triggered(); break;
+        case 8: _t->on_actionOpen_triggered(); break;
+        case 9: _t->on_actionPaste_triggered(); break;
+        case 10: _t->on_actionQuit_triggered(); break;
+        case 11: _t->on_actionRedo_triggered(); break;
+        case 12: _t->on_actionSave_As_triggered(); break;
+        case 13: _t->on_actionSave_triggered(); break;
+        case 14: _t->on_actionSelect_All_triggered(); break;
+        case 15: _t->on_actionUndo_triggered(); break;
         default: ;
         }
     }

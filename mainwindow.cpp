@@ -14,6 +14,7 @@
     newTabButton->setAutoRaise(true);
     newTabButton->setText("+");
     QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(makeNewTab()));
+    QObject::connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(deleteTab(int)));
 }
 
 MainWindow::~MainWindow()
@@ -41,6 +42,7 @@ void MainWindow::setUpEditor()
     ui->textEdit->setAcceptRichText(FALSE);
     MainWindow::setWindowTitle("Untitled - BenPad");
     MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
+    ui->tabWidget->setTabsClosable(true);
     ui->tabWidget->removeTab(1); // removes the redunant second tab
     ui->tabWidget->setTabText(0, "Untitled");
 
@@ -58,14 +60,16 @@ void MainWindow::setTabName(unsigned int index, QString text){
 
 void MainWindow::saveFileAs()
 {
-    QFile file(tabs[currentTab()].path = QFileDialog::getSaveFileName());
+    QString tmpPath = QFileDialog::getSaveFileName();
+    QFile file(tmpPath);
     if (file.open(QIODevice::WriteOnly|QIODevice::Text))
     {
+        tabs[currentTab()].path = tmpPath;
         file.write(ui->textEdit->toPlainText().toUtf8());
+        MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
+        tabs[currentTab()].filename = extractFilename(tabs[currentTab()].path);
+        setTabName(currentTab(), tabs[currentTab()].filename);
     }
-    MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
-    tabs[currentTab()].filename = extractFilename(tabs[currentTab()].path);
-    setTabName(currentTab(), tabs[currentTab()].filename);
 }
 
 void MainWindow::saveFile()
@@ -79,14 +83,18 @@ void MainWindow::saveFile()
 
 void MainWindow::openFile()
 {
-    QFile file(tabs[currentTab()].path = QFileDialog::getOpenFileName(this));
-    if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) cerr << "File open error";
-    QByteArray byteArray = file.readAll();
-    tabs[currentTab()].textEdit->setPlainText(byteArray.data());
+    QString tmpPath = QFileDialog::getOpenFileName(this);
+    QFile file(tmpPath);
+    if(file.open(QIODevice::ReadOnly|QIODevice::Text))
+    {
+        tabs[currentTab()].path = tmpPath;
+        QByteArray byteArray = file.readAll();
+        tabs[currentTab()].textEdit->setPlainText(byteArray.data());
 
-    MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
-    tabs[currentTab()].filename = extractFilename(tabs[currentTab()].path);
-    setTabName(currentTab(), tabs[currentTab()].filename);
+        MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
+        tabs[currentTab()].filename = extractFilename(tabs[currentTab()].path);
+        setTabName(currentTab(), tabs[currentTab()].filename);
+    }
 }
 
 void MainWindow::makeNewTab()
@@ -98,6 +106,13 @@ void MainWindow::makeNewTab()
     tab.path = "";
     tab.filename = "";
     tabs.push_back(tab);
+}
+
+void MainWindow::deleteTab(int i)
+{
+    tabs[i].textEdit->deleteLater();
+    tabs.erase(tabs.begin() + i);
+    ui->tabWidget->removeTab(i);
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -121,6 +136,7 @@ void MainWindow::on_actionNew_File_triggered()
 {
     ui->textEdit->clear();
     MainWindow::setWindowTitle("Untitled - BenPad");
+    setTabName(currentTab(), "Untitled");
 }
 
 void MainWindow::on_actionSave_As_triggered()
