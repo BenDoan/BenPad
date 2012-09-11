@@ -13,8 +13,35 @@
     ui->tabWidget->setCornerWidget(newTabButton);
     newTabButton->setAutoRaise(true);
     newTabButton->setText("+");
+
+    //connect signals
     QObject::connect(newTabButton, SIGNAL(clicked()), this, SLOT(makeNewTab()));
     QObject::connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(deleteTab(int)));
+
+    //create keyboard shortcuts
+    QShortcut *shortcut = new QShortcut(QKeySequence("ctrl+w"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(deleteCurrentTab()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+t"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(makeNewTab()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+s"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionSave_triggered()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+shift+s"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionSave_As_triggered()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+o"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionOpen_triggered()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+q"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(on_actionQuit_triggered()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+tab"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(switchToNextTab()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+shift+tab"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(switchToPrevTab()));
 }
 
 MainWindow::~MainWindow()
@@ -44,8 +71,9 @@ void MainWindow::setUpEditor()
     MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
     ui->tabWidget->setTabsClosable(true);
     ui->tabWidget->removeTab(1); // removes the redunant second tab
-    ui->tabWidget->setTabText(0, "Untitled");
 
+    //sets the tab data for the first tab
+    ui->tabWidget->setTabText(0, "Untitled");
     Tab tab;
     tab.number = 0;
     tab.path = "";
@@ -56,6 +84,29 @@ void MainWindow::setUpEditor()
 
 void MainWindow::setTabName(unsigned int index, QString text){
     ui->tabWidget->setTabText(index, text);
+}
+
+void MainWindow::switchToNextTab()
+{
+    if (currentTab() != (tabs.size() - 1))
+    {
+        ui->tabWidget->setCurrentIndex(currentTab() + 1);
+    }else
+    {
+        ui->tabWidget->setCurrentIndex(0);
+    }
+}
+
+void MainWindow::switchToPrevTab()
+{
+    if (currentTab() != 0)
+    {
+        ui->tabWidget->setCurrentIndex(currentTab() - 1);
+    }
+    else
+    {
+        ui->tabWidget->setCurrentIndex(tabs.size() - 1);
+    }
 }
 
 void MainWindow::saveFileAs()
@@ -106,6 +157,13 @@ void MainWindow::makeNewTab()
     tab.path = "";
     tab.filename = "";
     tabs.push_back(tab);
+
+    ui->tabWidget->setCurrentIndex(tab.number);
+}
+
+void MainWindow::deleteCurrentTab()
+{
+    deleteTab(currentTab());
 }
 
 void MainWindow::deleteTab(int i)

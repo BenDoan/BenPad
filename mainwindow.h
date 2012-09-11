@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QRegExp>
+#include <QShortcut>
 #include <QTextEdit>
 #include <QTextStream>
 #include <QToolButton>
@@ -32,8 +33,11 @@ public:
     ~MainWindow();
 
 private slots:
+    void switchToPrevTab();
+    void switchToNextTab();
     void makeNewTab();
     void deleteTab(int);
+    void deleteCurrentTab();
     void on_actionAbout_triggered();
     void on_actionCopy_triggered();
     void on_actionCut_triggered();
