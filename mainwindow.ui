@@ -118,6 +118,7 @@
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionAnimate"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -196,6 +197,11 @@
   <action name="actionNew_Tab">
    <property name="text">
     <string>New Tab</string>
+   </property>
+  </action>
+  <action name="actionAnimate">
+   <property name="text">
+    <string>Animate</string>
    </property>
   </action>
  </widget>

@@ -42,6 +42,9 @@
 
     shortcut = new QShortcut(QKeySequence("ctrl+shift+tab"), ui->tabWidget);
     QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(switchToPrevTab()));
+
+    shortcut = new QShortcut(QKeySequence("ctrl+d"), ui->tabWidget);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(deleteLine()));
 }
 
 MainWindow::~MainWindow()
@@ -69,7 +72,7 @@ void MainWindow::setUpEditor()
     ui->textEdit->setAcceptRichText(FALSE);
     MainWindow::setWindowTitle("Untitled - BenPad");
     MainWindow::setWindowIcon(QIcon(QApplication::applicationDirPath() + "/icon.png"));
-    ui->tabWidget->setTabsClosable(true);
+    ui->tabWidget->setTabsClosable(false);
     ui->tabWidget->removeTab(1); // removes the redunant second tab
 
     //sets the tab data for the first tab
@@ -106,7 +109,15 @@ void MainWindow::switchToPrevTab()
     else
     {
         ui->tabWidget->setCurrentIndex(tabs.size() - 1);
+
     }
+}
+
+void MainWindow::deleteLine()
+{
+    cerr << "Delete line";
+    //tabs[currentTab()].textEdit->textCursor().movePosition(QTextCursor::StartOfLine);
+    //tabs[currentTab()].textEdit->textCursor().removeSelectedText();
 }
 
 void MainWindow::saveFileAs()
@@ -159,6 +170,10 @@ void MainWindow::makeNewTab()
     tabs.push_back(tab);
 
     ui->tabWidget->setCurrentIndex(tab.number);
+
+    if (tabs.size() > 1) {
+        ui->tabWidget->setTabsClosable(true);
+    }
 }
 
 void MainWindow::deleteCurrentTab()
@@ -171,6 +186,9 @@ void MainWindow::deleteTab(int i)
     tabs[i].textEdit->deleteLater();
     tabs.erase(tabs.begin() + i);
     ui->tabWidget->removeTab(i);
+    if (tabs.size() == 1) {
+        ui->tabWidget->setTabsClosable(false);
+    }
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -204,12 +222,12 @@ void MainWindow::on_actionSave_As_triggered()
 
 void MainWindow::on_actionCopy_triggered()
 {
-   tabs[currentTab()].textEdit->copy();
+    tabs[currentTab()].textEdit->copy();
 }
 
 void MainWindow::on_actionPaste_triggered()
 {
-   tabs[currentTab()].textEdit->paste();
+    tabs[currentTab()].textEdit->paste();
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -219,35 +237,39 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionSelect_All_triggered()
 {
-   tabs[currentTab()].textEdit->selectAll();
+    tabs[currentTab()].textEdit->selectAll();
 }
 
 void MainWindow::on_actionUndo_triggered()
 {
-   tabs[currentTab()].textEdit->undo();
+    tabs[currentTab()].textEdit->undo();
 }
 
 void MainWindow::on_actionRedo_triggered()
 {
-   tabs[currentTab()].textEdit->redo();
+    tabs[currentTab()].textEdit->redo();
 }
 
 void MainWindow::on_actionDelete_triggered()
 {
-   tabs[currentTab()].textEdit->textCursor().removeSelectedText();
+    tabs[currentTab()].textEdit->textCursor().removeSelectedText();
 }
 
 void MainWindow::on_actionCut_triggered()
 {
-   tabs[currentTab()].textEdit->cut();
+    tabs[currentTab()].textEdit->cut();
 }
 
 void MainWindow::on_actionQuit_triggered()
 {
-   qApp->exit();
+    qApp->exit();
 }
 
 void MainWindow::on_actionNew_Tab_triggered()
 {
-  makeNewTab();
+    makeNewTab();
+}
+
+void MainWindow::on_actionAnimate_triggered()
+{
 }

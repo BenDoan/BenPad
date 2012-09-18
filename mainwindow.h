@@ -17,6 +17,9 @@
 #include <QWidget>
 #include <string>
 #include <vector>
+#include <QPropertyAnimation>
+#include <QPushButton>
+#include <QTextCursor>
 
 using namespace std;
 
@@ -33,6 +36,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void deleteLine();
     void switchToPrevTab();
     void switchToNextTab();
     void makeNewTab();
@@ -53,6 +57,7 @@ private slots:
     void on_actionSelect_All_triggered();
     void on_actionUndo_triggered();
 
+    void on_actionAnimate_triggered();
 
 private:
     void saveFileAs();

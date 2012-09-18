@@ -43,6 +43,7 @@ public:
     QAction *actionCut;
     QAction *actionQuit;
     QAction *actionNew_Tab;
+    QAction *actionAnimate;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTabWidget *tabWidget;
@@ -91,6 +92,8 @@ public:
         actionQuit->setObjectName(QString::fromUtf8("actionQuit"));
         actionNew_Tab = new QAction(MainWindow);
         actionNew_Tab->setObjectName(QString::fromUtf8("actionNew_Tab"));
+        actionAnimate = new QAction(MainWindow);
+        actionAnimate->setObjectName(QString::fromUtf8("actionAnimate"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
@@ -159,6 +162,7 @@ public:
         menuEdit->addSeparator();
         menuEdit->addAction(actionSelect_All);
         menuHelp->addAction(actionAbout);
+        menuHelp->addAction(actionAnimate);
 
         retranslateUi(MainWindow);
 
@@ -186,6 +190,7 @@ public:
         actionCut->setText(QApplication::translate("MainWindow", "Cut", 0, QApplication::UnicodeUTF8));
         actionQuit->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
         actionNew_Tab->setText(QApplication::translate("MainWindow", "New Tab", 0, QApplication::UnicodeUTF8));
+        actionAnimate->setText(QApplication::translate("MainWindow", "Animate", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Tab 1", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Tab 2", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
