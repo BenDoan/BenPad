@@ -20,6 +20,7 @@
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QTextCursor>
+#include <QDialog>
 
 using namespace std;
 
@@ -59,11 +60,14 @@ private slots:
 
     void on_actionAnimate_triggered();
 
+    void on_actionSettings_triggered();
+
 private:
     void saveFileAs();
     void saveFile();
     void openFile();
     void setUpEditor();
+    void displaySettingsDialog();
     int currentTab();
     void setTabName(unsigned int index, QString text);
     QString extractFilename(QString path);

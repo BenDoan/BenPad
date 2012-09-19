@@ -191,6 +191,12 @@ void MainWindow::deleteTab(int i)
     }
 }
 
+void MainWindow::displaySettingsDialog()
+{
+    QDialog dialog(this);
+    dialog.exec();
+}
+
 void MainWindow::on_actionOpen_triggered()
 {
   openFile();
@@ -205,7 +211,6 @@ void MainWindow::on_actionSave_triggered()
   {
       saveFile();
   }
-
 }
 
 void MainWindow::on_actionNew_File_triggered()
@@ -272,4 +277,9 @@ void MainWindow::on_actionNew_Tab_triggered()
 
 void MainWindow::on_actionAnimate_triggered()
 {
+}
+
+void MainWindow::on_actionSettings_triggered()
+{
+   displaySettingsDialog();
 }

@@ -112,6 +112,8 @@
     <addaction name="actionDelete"/>
     <addaction name="separator"/>
     <addaction name="actionSelect_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -147,11 +149,6 @@
   <action name="actionPaste">
    <property name="text">
     <string>Paste</string>
-   </property>
-  </action>
-  <action name="actionSettings">
-   <property name="text">
-    <string>Settings</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -202,6 +199,11 @@
   <action name="actionAnimate">
    <property name="text">
     <string>Animate</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

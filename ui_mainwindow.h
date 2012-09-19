@@ -33,7 +33,6 @@ public:
     QAction *actionNew_File;
     QAction *actionCopy;
     QAction *actionPaste;
-    QAction *actionSettings;
     QAction *actionAbout;
     QAction *actionSave_As;
     QAction *actionSelect_All;
@@ -44,6 +43,7 @@ public:
     QAction *actionQuit;
     QAction *actionNew_Tab;
     QAction *actionAnimate;
+    QAction *actionSettings;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTabWidget *tabWidget;
@@ -72,8 +72,6 @@ public:
         actionCopy->setObjectName(QString::fromUtf8("actionCopy"));
         actionPaste = new QAction(MainWindow);
         actionPaste->setObjectName(QString::fromUtf8("actionPaste"));
-        actionSettings = new QAction(MainWindow);
-        actionSettings->setObjectName(QString::fromUtf8("actionSettings"));
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         actionSave_As = new QAction(MainWindow);
@@ -94,6 +92,8 @@ public:
         actionNew_Tab->setObjectName(QString::fromUtf8("actionNew_Tab"));
         actionAnimate = new QAction(MainWindow);
         actionAnimate->setObjectName(QString::fromUtf8("actionAnimate"));
+        actionSettings = new QAction(MainWindow);
+        actionSettings->setObjectName(QString::fromUtf8("actionSettings"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
@@ -161,6 +161,8 @@ public:
         menuEdit->addAction(actionDelete);
         menuEdit->addSeparator();
         menuEdit->addAction(actionSelect_All);
+        menuEdit->addSeparator();
+        menuEdit->addAction(actionSettings);
         menuHelp->addAction(actionAbout);
         menuHelp->addAction(actionAnimate);
 
@@ -180,7 +182,6 @@ public:
         actionNew_File->setText(QApplication::translate("MainWindow", "New", 0, QApplication::UnicodeUTF8));
         actionCopy->setText(QApplication::translate("MainWindow", "Copy", 0, QApplication::UnicodeUTF8));
         actionPaste->setText(QApplication::translate("MainWindow", "Paste", 0, QApplication::UnicodeUTF8));
-        actionSettings->setText(QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
         actionAbout->setText(QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
         actionSave_As->setText(QApplication::translate("MainWindow", "Save As", 0, QApplication::UnicodeUTF8));
         actionSelect_All->setText(QApplication::translate("MainWindow", "Select All", 0, QApplication::UnicodeUTF8));
@@ -191,6 +192,7 @@ public:
         actionQuit->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
         actionNew_Tab->setText(QApplication::translate("MainWindow", "New Tab", 0, QApplication::UnicodeUTF8));
         actionAnimate->setText(QApplication::translate("MainWindow", "Animate", 0, QApplication::UnicodeUTF8));
+        actionSettings->setText(QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Tab 1", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Tab 2", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
