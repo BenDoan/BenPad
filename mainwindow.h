@@ -57,9 +57,7 @@ private slots:
     void on_actionSave_triggered();
     void on_actionSelect_All_triggered();
     void on_actionUndo_triggered();
-
     void on_actionAnimate_triggered();
-
     void on_actionSettings_triggered();
 
 private:

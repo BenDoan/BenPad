@@ -193,8 +193,8 @@ void MainWindow::deleteTab(int i)
 
 void MainWindow::displaySettingsDialog()
 {
-    QDialog dialog(this);
-    dialog.exec();
+    //settings dialog(this);
+    //dialog.exec();
 }
 
 void MainWindow::on_actionOpen_triggered()
