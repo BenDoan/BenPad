@@ -91,23 +91,19 @@ void MainWindow::setTabName(unsigned int index, QString text){
 
 void MainWindow::switchToNextTab()
 {
-    if (currentTab() != (tabs.size() - 1))
-    {
+    if (currentTab() != (tabs.size() - 1)) {
         ui->tabWidget->setCurrentIndex(currentTab() + 1);
-    }else
-    {
+    }else {
         ui->tabWidget->setCurrentIndex(0);
     }
 }
 
 void MainWindow::switchToPrevTab()
 {
-    if (currentTab() != 0)
-    {
+    if (currentTab() != 0) {
         ui->tabWidget->setCurrentIndex(currentTab() - 1);
     }
-    else
-    {
+    else {
         ui->tabWidget->setCurrentIndex(tabs.size() - 1);
 
     }
@@ -124,8 +120,7 @@ void MainWindow::saveFileAs()
 {
     QString tmpPath = QFileDialog::getSaveFileName();
     QFile file(tmpPath);
-    if (file.open(QIODevice::WriteOnly|QIODevice::Text))
-    {
+    if (file.open(QIODevice::WriteOnly|QIODevice::Text)) {
         tabs[currentTab()].path = tmpPath;
         file.write(ui->textEdit->toPlainText().toUtf8());
         MainWindow::setWindowTitle(tabs[currentTab()].path.toUtf8() + " - BenPad");
@@ -137,8 +132,7 @@ void MainWindow::saveFileAs()
 void MainWindow::saveFile()
 {
     QFile file(tabs[currentTab()].path);
-    if (file.open(QIODevice::WriteOnly|QIODevice::Text))
-    {
+    if (file.open(QIODevice::WriteOnly|QIODevice::Text)) {
         file.write(ui->textEdit->toPlainText().toUtf8());
     }
 }
@@ -147,8 +141,7 @@ void MainWindow::openFile()
 {
     QString tmpPath = QFileDialog::getOpenFileName(this);
     QFile file(tmpPath);
-    if(file.open(QIODevice::ReadOnly|QIODevice::Text))
-    {
+    if(file.open(QIODevice::ReadOnly|QIODevice::Text)) {
         tabs[currentTab()].path = tmpPath;
         QByteArray byteArray = file.readAll();
         tabs[currentTab()].textEdit->setPlainText(byteArray.data());
@@ -193,8 +186,8 @@ void MainWindow::deleteTab(int i)
 
 void MainWindow::displaySettingsDialog()
 {
-    //settings dialog(this);
-    //dialog.exec();
+    settings dialog(this);
+    dialog.exec();
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -207,8 +200,7 @@ void MainWindow::on_actionSave_triggered()
   if (tabs[currentTab()].path.isEmpty())
   {
       saveFileAs();
-  }else
-  {
+  }else {
       saveFile();
   }
 }

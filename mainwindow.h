@@ -22,6 +22,8 @@
 #include <QTextCursor>
 #include <QDialog>
 
+#include "settings.h"
+
 using namespace std;
 
 namespace Ui {
