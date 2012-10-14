@@ -22,7 +22,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      22,   14, // methods
+      23,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -31,33 +31,35 @@ static const uint qt_meta_data_MainWindow[] = {
 
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x08,
-      25,   11,   11,   11, 0x08,
-      43,   11,   11,   11, 0x08,
-      61,   11,   11,   11, 0x08,
-      74,   11,   11,   11, 0x08,
-      89,   11,   11,   11, 0x08,
-     108,   11,   11,   11, 0x08,
-     135,   11,   11,   11, 0x08,
-     161,   11,   11,   11, 0x08,
-     186,   11,   11,   11, 0x08,
-     214,   11,   11,   11, 0x08,
-     244,   11,   11,   11, 0x08,
-     273,   11,   11,   11, 0x08,
-     299,   11,   11,   11, 0x08,
-     326,   11,   11,   11, 0x08,
-     352,   11,   11,   11, 0x08,
-     378,   11,   11,   11, 0x08,
-     407,   11,   11,   11, 0x08,
-     433,   11,   11,   11, 0x08,
-     465,   11,   11,   11, 0x08,
-     491,   11,   11,   11, 0x08,
-     520,   11,   11,   11, 0x08,
+      32,   11,   11,   11, 0x08,
+      45,   11,   11,   11, 0x08,
+      63,   11,   11,   11, 0x08,
+      81,   11,   11,   11, 0x08,
+      94,   11,   11,   11, 0x08,
+     109,   11,   11,   11, 0x08,
+     128,   11,   11,   11, 0x08,
+     155,   11,   11,   11, 0x08,
+     181,   11,   11,   11, 0x08,
+     206,   11,   11,   11, 0x08,
+     234,   11,   11,   11, 0x08,
+     264,   11,   11,   11, 0x08,
+     293,   11,   11,   11, 0x08,
+     319,   11,   11,   11, 0x08,
+     346,   11,   11,   11, 0x08,
+     372,   11,   11,   11, 0x08,
+     398,   11,   11,   11, 0x08,
+     427,   11,   11,   11, 0x08,
+     453,   11,   11,   11, 0x08,
+     485,   11,   11,   11, 0x08,
+     511,   11,   11,   11, 0x08,
+     540,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0deleteLine()\0switchToPrevTab()\0"
+    "MainWindow\0\0handleNewSettings()\0"
+    "deleteLine()\0switchToPrevTab()\0"
     "switchToNextTab()\0makeNewTab()\0"
     "deleteTab(int)\0deleteCurrentTab()\0"
     "on_actionAbout_triggered()\0"
@@ -84,28 +86,29 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_ASSERT(staticMetaObject.cast(_o));
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->deleteLine(); break;
-        case 1: _t->switchToPrevTab(); break;
-        case 2: _t->switchToNextTab(); break;
-        case 3: _t->makeNewTab(); break;
-        case 4: _t->deleteTab((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 5: _t->deleteCurrentTab(); break;
-        case 6: _t->on_actionAbout_triggered(); break;
-        case 7: _t->on_actionCopy_triggered(); break;
-        case 8: _t->on_actionCut_triggered(); break;
-        case 9: _t->on_actionDelete_triggered(); break;
-        case 10: _t->on_actionNew_File_triggered(); break;
-        case 11: _t->on_actionNew_Tab_triggered(); break;
-        case 12: _t->on_actionOpen_triggered(); break;
-        case 13: _t->on_actionPaste_triggered(); break;
-        case 14: _t->on_actionQuit_triggered(); break;
-        case 15: _t->on_actionRedo_triggered(); break;
-        case 16: _t->on_actionSave_As_triggered(); break;
-        case 17: _t->on_actionSave_triggered(); break;
-        case 18: _t->on_actionSelect_All_triggered(); break;
-        case 19: _t->on_actionUndo_triggered(); break;
-        case 20: _t->on_actionAnimate_triggered(); break;
-        case 21: _t->on_actionSettings_triggered(); break;
+        case 0: _t->handleNewSettings(); break;
+        case 1: _t->deleteLine(); break;
+        case 2: _t->switchToPrevTab(); break;
+        case 3: _t->switchToNextTab(); break;
+        case 4: _t->makeNewTab(); break;
+        case 5: _t->deleteTab((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->deleteCurrentTab(); break;
+        case 7: _t->on_actionAbout_triggered(); break;
+        case 8: _t->on_actionCopy_triggered(); break;
+        case 9: _t->on_actionCut_triggered(); break;
+        case 10: _t->on_actionDelete_triggered(); break;
+        case 11: _t->on_actionNew_File_triggered(); break;
+        case 12: _t->on_actionNew_Tab_triggered(); break;
+        case 13: _t->on_actionOpen_triggered(); break;
+        case 14: _t->on_actionPaste_triggered(); break;
+        case 15: _t->on_actionQuit_triggered(); break;
+        case 16: _t->on_actionRedo_triggered(); break;
+        case 17: _t->on_actionSave_As_triggered(); break;
+        case 18: _t->on_actionSave_triggered(); break;
+        case 19: _t->on_actionSelect_All_triggered(); break;
+        case 20: _t->on_actionUndo_triggered(); break;
+        case 21: _t->on_actionAnimate_triggered(); break;
+        case 22: _t->on_actionSettings_triggered(); break;
         default: ;
         }
     }
@@ -143,9 +146,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 22)
+        if (_id < 23)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 22;
+        _id -= 23;
     }
     return _id;
 }

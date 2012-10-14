@@ -23,6 +23,7 @@
 #include <QDialog>
 
 #include "settings.h"
+#include "highlighter.h"
 
 using namespace std;
 
@@ -39,6 +40,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void handleNewSettings();
     void deleteLine();
     void switchToPrevTab();
     void switchToNextTab();
@@ -78,6 +80,7 @@ private:
         QString path;
         QString filename;
         QTextEdit *textEdit;
+        Highlighter *highlighter;
     };
     vector<Tab> tabs;
 };

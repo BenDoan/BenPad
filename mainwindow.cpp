@@ -82,6 +82,7 @@ void MainWindow::setUpEditor()
     tab.path = "";
     tab.filename = "";
     tab.textEdit = ui->textEdit;
+    tab.highlighter = new Highlighter(ui->textEdit->document());
     tabs.push_back(tab);
 }
 
@@ -105,7 +106,6 @@ void MainWindow::switchToPrevTab()
     }
     else {
         ui->tabWidget->setCurrentIndex(tabs.size() - 1);
-
     }
 }
 
@@ -188,6 +188,13 @@ void MainWindow::displaySettingsDialog()
 {
     settings dialog(this);
     dialog.exec();
+    //QObject::connect(dialog, SIGNAL(accepted()), this, SLOT(handleNewSettings()));
+
+}
+
+void MainWindow::handleNewSettings()
+{
+    cerr << 1;
 }
 
 void MainWindow::on_actionOpen_triggered()
