@@ -2,4 +2,6 @@ BenPad
 ======
 
 A multi-platform QT based programming text editor.
-![screenshot](BenPad.png "Screenshot")
+![screenshot](benpad-kde.png "Screenshot")
+![screenshot](benpad-xp.png "Screenshot")
+![screenshot](benpad-unity.png "Screenshot")
